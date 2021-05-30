@@ -27,3 +27,11 @@ $(document).on('submit', 'form.add-reply', function (event) {
     })
     return false;
 })
+
+$('.statistics tr').on("click",function(event){
+        event.preventDefault();
+        var id = $(this).data('key');
+        $('#statisticsDetails').modal("show");
+        $('#statisticsDetails').find(".modal-body").load('/admin/statistic/statistics-details?id=' + id);
+    }
+);

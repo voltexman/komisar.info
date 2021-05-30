@@ -23,7 +23,9 @@ class VisitStatistics extends Component
                 $this->addPage($id);
             } else {
                 $id = $this->getIdByIp();
+                $this->updateStatistics($id);
                 $this->addPage($id);
+                Yii::$app->session->setFlash('statisticsId', $id);
             }
         }
 
@@ -44,6 +46,8 @@ class VisitStatistics extends Component
 
         $statistics->save();
 
+        Yii::$app->session->setFlash('statisticsId', $statistics->getPrimaryKey());
+
         return $statistics->getPrimaryKey();
     }
 
@@ -60,6 +64,13 @@ class VisitStatistics extends Component
         $visitedPage->save();
 
         Yii::$app->session->setFlash('realId', $visitedPage->getPrimaryKey());
+    }
+
+    public function updateStatistics($id): void
+    {
+        $statistics = Statistics::findOne($id);
+
+        $statistics->updateAttributes(['visited_at' => date('Y-m-d H:i:s')]);
     }
 
     private function isNewVisitor(): bool

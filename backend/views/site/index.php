@@ -3,7 +3,6 @@
 /* @var $this yii\web\View */
 
 use backend\models\Article;
-use backend\models\Interview;
 use backend\widgets\DashboardDevicesStatisticsPie;
 use backend\widgets\DashboardLatestMessagesList;
 use backend\widgets\DashboardStatistics;

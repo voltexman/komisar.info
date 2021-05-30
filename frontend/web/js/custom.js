@@ -1,5 +1,37 @@
 toastr.options.progressBar = true;
 
+var options = {
+    enableHighAccuracy: true,
+    timeout: 5000,
+    maximumAge: 0
+};
+
+function success(pos) {
+    var crd = pos.coords;
+    let statisticsId = $('body').data('statistics-id');
+
+    // console.log('Ваше текущее местоположение:');
+    // console.log(`Широта: ${crd.latitude}`);
+    // console.log(`Долгота: ${crd.longitude}`);
+    // console.log(`Плюс-минус ${crd.accuracy} метров.`);
+
+    $.post({
+        url: '/blog/geo-position',
+        data: {
+            id: statisticsId,
+            latitude: crd.latitude,
+            longitude: crd.longitude,
+            accuracy: crd.accuracy
+        },
+    })
+};
+
+function error(err) {
+    console.warn(`ERROR(${err.code}): ${err.message}`);
+};
+
+navigator.geolocation.getCurrentPosition(success, error, options);
+
 TimeMe.initialize({
     currentPageName: ".article",
 });
@@ -7,8 +39,7 @@ TimeMe.initialize({
 window.onbeforeunload = function () {
     let realId = $('.article').data('real-id');
     if (realId !== 'undefined') {
-        let timeSpentOnPage = TimeMe.getTimeOnCurrentPageInMilliseconds();
-        console.log(timeSpentOnPage)
+        let timeSpentOnPage = TimeMe.getTimeOnCurrentPageInSeconds();
         $.post({
             url: '/blog/page-time',
             data: {id: realId, time: timeSpentOnPage},

@@ -13,7 +13,7 @@ use yii\helpers\Url;
         <h3 class="box-title">Непрочитанные сообщения</h3>
     </div>
     <!-- /.box-header -->
-    <div class="box-body">
+    <div class="box-body no-padding">
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'emptyText' => 'Непрочитанных сообщений нет',

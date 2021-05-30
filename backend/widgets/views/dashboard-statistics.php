@@ -5,16 +5,28 @@
 use blog\helpers\StatisticsHelper;
 use common\models\Statistics;
 use frontend\models\Contact;
+use yii\bootstrap\Modal;
 use yii\grid\GridView;
+use yii\helpers\Html;
 use yii\widgets\Pjax;
 
 ?>
-<div class="box box-solid">
+
+<?php Modal::begin([
+    'options' => ['id' => 'statisticsDetails'],
+    'header' => 'Детальная информация',
+    'footer' => Html::button('Закрыть', ['class' => 'btn btn-primary btn-flat', 'onclick' => '$("#statisticsDetails").modal("hide")'])
+]);
+
+Modal::end();
+?>
+
+<div class="box box-solid statistics">
     <div class="box-header with-border pull-left">
         <h3 class="box-title">Посещаемость сайта</h3>
     </div>
     <!-- /.box-header -->
-    <div class="box-body">
+    <div class="box-body no-padding">
         <?php Pjax::begin() ?>
         <?= GridView::widget([
             'dataProvider' => $dataProvider,

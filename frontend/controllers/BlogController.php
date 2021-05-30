@@ -136,7 +136,26 @@ class BlogController extends Controller
         }
     }
 
-    public function actionPageTime()
+    public function actionGeoPosition(): void
+    {
+        if (Yii::$app->request->isAjax) {
+            $id = Yii::$app->request->post('id');
+
+            $latitude = Yii::$app->request->post('latitude');
+            $longitude = Yii::$app->request->post('longitude');
+            $accuracy = Yii::$app->request->post('accuracy');
+
+            $statistics = Statistics::findOne($id);
+
+            $statistics->updateAttributes([
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'accuracy' => $accuracy
+            ]);
+        }
+    }
+
+    public function actionPageTime(): void
     {
         if (Yii::$app->request->isAjax) {
             $id = Yii::$app->request->post('id');

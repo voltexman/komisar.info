@@ -19,7 +19,11 @@ class m210527_140552_create_statistics_table extends Migration
             'device' => $this->string(),
             'os' => $this->string(),
             'city' => $this->string(),
-            'type' => $this->string()
+            'type' => $this->string(),
+            'visited_at' => $this->dateTime(),
+            'latitude' => $this->string(),
+            'longitude' => $this->string(),
+            'accuracy' => $this->string()
         ]);
     }
 

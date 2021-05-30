@@ -14,6 +14,10 @@ use Yii;
  * @property string|null $os
  * @property string|null $city
  * @property string|null $type
+ * @property string $visited_at [datetime]
+ * @property string $latitude [varchar(255)]
+ * @property string $longitude [varchar(255)]
+ * @property string $accuracy [varchar(255)]
  *
  */
 class Statistics extends \yii\db\ActiveRecord
@@ -39,6 +43,7 @@ class Statistics extends \yii\db\ActiveRecord
     {
         return [
             [['ip', 'browser', 'device', 'os', 'city', 'type'], 'string', 'max' => 255],
+            [['visited_at'], 'default', 'value' => date('Y-m-d H:i:s')],
         ];
     }
 
@@ -56,5 +61,13 @@ class Statistics extends \yii\db\ActiveRecord
             'city' => 'City',
             'link' => 'Link',
         ];
+    }
+
+    /**
+     * Gets query for [[Visited Pages]].
+     */
+    public function getPages()
+    {
+        return $this->hasMany(VisitedPage::class, ['statistics_id' => 'id']);
     }
 }
