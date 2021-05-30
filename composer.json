@@ -1,0 +1,77 @@
+{
+    "name": "yiisoft/yii2-app-advanced",
+    "description": "Yii 2 Advanced Project Template",
+    "keywords": ["yii2", "framework", "advanced", "project template"],
+    "homepage": "http://www.yiiframework.com/",
+    "type": "project",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/yiisoft/yii2/issues?state=open",
+        "forum": "http://www.yiiframework.com/forum/",
+        "wiki": "http://www.yiiframework.com/wiki/",
+        "irc": "irc://irc.freenode.net/yii",
+        "source": "https://github.com/yiisoft/yii2"
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=8.0",
+        "yiisoft/yii2": "~2.0.14",
+        "yiisoft/yii2-bootstrap": "~2.0.0",
+        "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
+        "dmstr/yii2-adminlte-asset": "2.*",
+        "alexandernst/yii2-device-detect": "0.0.12",
+        "kartik-v/yii2-widget-fileinput": "dev-master",
+        "vova07/yii2-imperavi-widget": "*",
+        "yii-dream-team/yii2-upload-behavior": "*",
+        "phpunit/php-token-stream": "^3.1",
+        "kartik-v/yii2-widget-select2": "dev-master",
+        "2amigos/yii2-grid-view-library": "~1.0",
+        "dvizh/yii2-gallery": "@dev",
+        "hreitsma/yii2-simplemath-captcha": "dev-master",
+        "johnsnook/yii2-visitors": "*",
+        "coderius/yii2-hit-counter": "1.0.2.2",
+        "simialbi/yii2-schema-org": "^2.1",
+        "himiklab/yii2-recaptcha-widget": "*",
+        "kartik-v/yii2-dialog": "dev-master",
+        "kartik-v/yii2-popover-x": "dev-master",
+        "kartik-v/yii2-widget-activeform": "dev-master",
+        "kartik-v/yii2-widget-datepicker": "dev-master",
+        "kartik-v/yii2-field-range": "*",
+        "kartik-v/yii2-detail-view": "dev-master",
+        "pcrt/yii2-ajax-pager": "@dev",
+        "kop/yii2-scroll-pager": "dev-master",
+        "ereminmdev/yii2-infinite-scroll": "^1.0",
+        "bigpaulie/yii2-social-share": "dev-master",
+        "yiimaker/yii2-social-share": "^2.3",
+        "arkhipovandrei/yii2-morpher": "dev-master",
+        "yii2mod/yii2-comments": "*",
+        "geoip2/geoip2": "~2.0",
+        "kostikpenzin/yii2-geoip": "*",
+        "sinergi/browser-detector": "^6.1",
+        "2amigos/yii2-chartjs-widget": "~2.0",
+        "jaybizzle/crawler-detect": "^1.2"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "~2.1.0",
+        "yiisoft/yii2-gii": "~2.1.0",
+        "yiisoft/yii2-faker": "~2.0.0",
+        "codeception/codeception": "^4.0",
+        "codeception/module-asserts": "^1.0",
+        "codeception/module-yii2": "^1.0",
+        "codeception/module-filesystem": "^1.0",
+        "codeception/verify": "~0.5.0 || ~1.1.0",
+        "symfony/browser-kit": ">=2.7 <=4.2.4"
+    },
+    "config": {
+        "process-timeout": 1800,
+        "fxp-asset": {
+            "enabled": false
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
