@@ -2,6 +2,7 @@
 
 namespace common\models;
 
+use JetBrains\PhpStorm\ArrayShape;
 use Yii;
 
 /**
@@ -10,15 +11,17 @@ use Yii;
  * @property int $id
  * @property string|null $page
  * @property string|null $link
+ * @property bool $real_page
  * @property int|null $viewing_time
  * @property int $statistics_id
+ * @property string $visited_at [datetime]
  */
 class VisitedPage extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'visited_page';
     }
@@ -26,19 +29,21 @@ class VisitedPage extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['viewing_time', 'statistics_id', 'viewing_time'], 'integer'],
             [['page'], 'string', 'max' => 255],
             [['visited_at'], 'default', 'value' => date('Y-m-d H:i:s')],
+            [['real_page'], 'boolean']
         ];
     }
 
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    #[ArrayShape(['id' => "string", 'ip' => "string", 'page' => "string", 'viewing_time' => "string"])]
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',

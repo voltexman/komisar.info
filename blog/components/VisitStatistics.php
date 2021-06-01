@@ -5,6 +5,7 @@ namespace blog\components;
 
 
 use blog\helpers\ArticleHelper;
+use blog\helpers\StatisticsHelper;
 use common\models\Statistics;
 use common\models\VisitedPage;
 use Jaybizzle\CrawlerDetect\CrawlerDetect;
@@ -12,6 +13,7 @@ use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use Yii;
 use yii\base\Component;
+use yii\web\NotFoundHttpException;
 
 class VisitStatistics extends Component
 {
@@ -53,13 +55,17 @@ class VisitStatistics extends Component
 
     public function addPage($id): void
     {
-        $page = ArticleHelper::getPageNameByAlias(self::getAliasByUrl());
+        $alias = self::getAliasByUrl();
+
+        $page = ArticleHelper::getPageNameByAlias($alias);
+        $real_page = StatisticsHelper::getRealPageStatus($alias);
 
         $visitedPage = new VisitedPage();
 
         $visitedPage->statistics_id = $id;
         $visitedPage->page = $page ? $page : Yii::$app->request->url;
         $visitedPage->link = Yii::$app->request->url;
+        $visitedPage->real_page = $real_page;
 
         $visitedPage->save();
 

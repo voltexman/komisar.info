@@ -14,7 +14,7 @@ $this->title = $name;
 
 <div class="container">
     <div class="row pt-80">
-        <div class="col-lg-6 col-md-12 d-lg-block d-none pr-50"><img src="imgs/theme/page-not-found.png" alt="">
+        <div class="col-lg-6 col-md-12 d-lg-block d-none pr-50"><img src="/imgs/theme/page-not-found.png" alt="">
         </div>
         <div class="col-lg-6 col-md-12 pl-50 text-md-center text-lg-left">
             <h1 class="mb-30 font-weight-900 page-404">404</h1>

@@ -28,6 +28,9 @@ class Statistics extends \yii\db\ActiveRecord
     const BOT = 'bot';
     const HUMAN = 'human';
 
+    const REAL_PAGE = 1;
+    const NOT_REAP_PAGE = 0;
+
     /**
      * {@inheritdoc}
      */

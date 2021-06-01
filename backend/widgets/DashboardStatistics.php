@@ -17,7 +17,7 @@ class DashboardStatistics extends Widget
                 ->where(['type' => Statistics::HUMAN]),
             'sort' => [
                 'defaultOrder' => [
-                    'id' => SORT_DESC
+                    'visited_at' => SORT_DESC
                 ]],
             'pagination' => [
                 'pageSize' => 20,

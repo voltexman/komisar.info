@@ -49,7 +49,10 @@
         "kostikpenzin/yii2-geoip": "*",
         "sinergi/browser-detector": "^6.1",
         "2amigos/yii2-chartjs-widget": "~2.0",
-        "jaybizzle/crawler-detect": "^1.2"
+        "jaybizzle/crawler-detect": "^1.2",
+        "2amigos/yii2-google-maps-library": "*",
+        "elektromann/yii2-openlayers-maps": "*",
+        "mirocow/yii2-yandex-maps": "dev-master"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

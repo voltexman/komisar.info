@@ -15,6 +15,20 @@ return [
     'name' => 'Komisar.Info',
     'language' => 'ru',
     'components' => [
+//        'yandexMapsApi' => [
+//            'class' => 'mirocow\yandexmaps\Api',
+//        ],
+//        'assetManager' => [
+//            'bundles' => [
+//                'dosamigos\google\maps\MapAsset' => [
+//                    'options' => [
+//                        'key' => 'AIzaSyBK8ILpaiYgLwIcynKlmBqy4psFVpYxFg8',
+//                        'language' => 'ru',
+//                        'version' => '3.1.18'
+//                    ]
+//                ]
+//            ]
+//        ],
         'devicedetect' => [
             'class' => 'alexandernst\devicedetect\DeviceDetect'
         ],

@@ -1,10 +1,9 @@
 <?php
 
-/* @var $dataProvider Contact */
+/* @var $dataProvider Statistics */
 
 use blog\helpers\StatisticsHelper;
 use common\models\Statistics;
-use frontend\models\Contact;
 use yii\bootstrap\Modal;
 use yii\grid\GridView;
 use yii\helpers\Html;
@@ -34,12 +33,23 @@ Modal::end();
             'summary' => false,
             'columns' => [
                 [
-                    'label' => 'IP адрес',
-                    'attribute' => 'ip'
+                    'label' => 'Дата',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        return !StatisticsHelper::isTodayDate($data->visited_at) ?
+                            '<i class="fa fa-calendar"></i> ' .
+                            Yii::$app->formatter->asDate($data->visited_at, 'short') :
+                            '<i class="fa fa-clock-o"></i> ' .
+                            Yii::$app->formatter->asTime($data->visited_at, 'short');
+                    }
                 ],
                 [
                     'label' => 'ОС',
-                    'attribute' => 'os'
+//                    'attribute' => 'os',
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        return StatisticsHelper::getStatisticsIcon($data->os) . $data->os;
+                    }
                 ],
                 [
                     'label' => 'Браузер',
@@ -47,9 +57,12 @@ Modal::end();
                 ],
                 [
                     'label' => 'Устройство',
-                    'attribute' => 'device',
+//                    'attribute' => 'device',
+                    'format' => 'raw',
                     'value' => function ($data) {
-                        return $data->device === Statistics::DESKTOP ? 'Компьютер' : 'Мобильный';
+                        return $data->device === Statistics::DESKTOP ?
+                            '<i class="fa fa-desktop"></i> Компьютер' :
+                            '<i class="fa fa-mobile"></i> Мобильный';
                     }
                 ]
             ],
