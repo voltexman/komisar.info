@@ -12,8 +12,7 @@ class StatisticController extends Controller
     public function actionStatisticsDetails($id): string
     {
         $statistics = Statistics::findOne($id);
-        $pages = $statistics->getPages()
-            ->where(['real_page' => Statistics::REAL_PAGE])->all();
+        $pages = $statistics->pages;
 
         return $this->renderAjax('statistics-details', [
             'statistics' => $statistics,

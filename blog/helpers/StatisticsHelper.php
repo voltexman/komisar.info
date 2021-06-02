@@ -87,7 +87,6 @@ class StatisticsHelper
     {
         return Statistics::findOne($id)
             ->getPages()
-            ->where(['real_page' => Statistics::REAL_PAGE])
             ->count();
     }
 
@@ -96,6 +95,11 @@ class StatisticsHelper
         $ip_data = @json_decode(file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $ip));
 
         return $ip_data->geoplugin_city;
+    }
+
+    public static function getCountryByIp($ip): string
+    {
+        return '';
     }
 
     public static function getTodayVisitedCount(): int
