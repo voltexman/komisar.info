@@ -51,6 +51,45 @@ return [
             ],        ],
         'socialShare' => [
             'class' => \ymaker\social\share\configurators\Configurator::class,
+            'registerMetaTags' => false,
+            'socialNetworks' => [
+                'facebook' => [
+                    'class' => \ymaker\social\share\drivers\Facebook::class,
+                    'options' => ['class' => 'fb'],
+                ],
+                'twitter' => [
+                    'class' => \ymaker\social\share\drivers\Twitter::class,
+                    'options' => ['class' => 'tw'],
+                ],
+                'pinterest' => [
+                    'class' => \ymaker\social\share\drivers\Pinterest::class,
+                    'options' => ['class' => 'pt']
+                ],
+                'odnoklassniki' => [
+                    'class' => \ymaker\social\share\drivers\Odnoklassniki::class,
+                    'options' => ['class' => 'ok'],
+                ],
+                'vkontakte' => [
+                    'class' => \ymaker\social\share\drivers\Vkontakte::class,
+                    'options' => ['class' => 'vk'],
+                ],
+                'linkedin' => [
+                    'class' => \ymaker\social\share\drivers\LinkedIn::class,
+                    'options' => ['class' => 'lk'],
+                ],
+                'telegram' => [
+                    'class' => \ymaker\social\share\drivers\Telegram::class,
+                    'options' => ['class' => 'tg'],
+                ]
+            ],
+            'enableDefaultIcons' => true,
+            'options' => [
+                'class' => 'social-icon text-xs-center',
+            ],
+        ],
+        'inViewShare' => [
+            'class' => \ymaker\social\share\configurators\Configurator::class,
+            'registerMetaTags' => true,
             'socialNetworks' => [
                 'facebook' => [
                     'class' => \ymaker\social\share\drivers\Facebook::class,

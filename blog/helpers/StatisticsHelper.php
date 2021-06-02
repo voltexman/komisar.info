@@ -49,13 +49,13 @@ class StatisticsHelper
         };
     }
 
-    public static function getRealPageStatus($alias): bool
+    public static function isRealRequest($alias): bool
     {
         $isArticle = ArticleHelper::getPageNameByAlias($alias);
         $otherPages = ['', 'favorite', 'contact'];
         $isOtherPage = in_array($alias, $otherPages);
 
-        return $isArticle || $isOtherPage ? Statistics::REAL_PAGE : Statistics::NOT_REAP_PAGE;
+        return $isArticle || $isOtherPage;
     }
 
     public static function isTodayDate($visited_at): bool
@@ -77,8 +77,32 @@ class StatisticsHelper
             'Chrome' => '<i class="fa fa-chrome"></i> ',
             'Safari' => '<i class="fa fa-safari"></i> ',
             'Firefox' => '<i class="fa fa-firefox"></i> ',
+            'Internet Explorer' => '<i class="fa fa-internet-explorer"></i> ',
 
             default => ''
         };
+    }
+
+    public static function getVisitedPagesCount(int $id): int
+    {
+        return Statistics::findOne($id)
+            ->getPages()
+            ->where(['real_page' => Statistics::REAL_PAGE])
+            ->count();
+    }
+
+    public static function getCityByIp($ip): string
+    {
+        $ip_data = @json_decode(file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $ip));
+
+        return $ip_data->geoplugin_city;
+    }
+
+    public static function getTodayVisitedCount(): int
+    {
+        return Statistics::find()
+            ->where(['like', 'visited_at', date('Y-m-d')])
+            ->andWhere(['type' => Statistics::HUMAN])
+            ->count();
     }
 }

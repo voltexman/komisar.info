@@ -41,7 +41,7 @@ class SearchArticle extends Article
                 ->where(['publication' => Article::PUBLICATION_ON]),
             'sort' => ['defaultOrder' => ['id' => SORT_DESC]],
             'pagination' => [
-                'pageSize' => 1
+                'pageSize' => 9
             ]
         ]);
 

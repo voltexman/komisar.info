@@ -36,7 +36,6 @@ AppAsset::register($this);
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <?php $this->registerCsrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?php $this->head() ?>
     </head>
@@ -64,7 +63,7 @@ AppAsset::register($this);
                         </button>
                         <span class="vertical-divider mr-20 ml-20 d-md-inline"></span>
                         <?php Pjax::begin(['id' => 'favoriteMenu', 'timeout' => false]) ?>
-                        <a href="<?= Url::to(['site/favorite']) ?>" data-pjax="0">
+                        <a rel="nofollow" href="<?= Url::to(['site/favorite']) ?>" data-pjax="0">
                         <span class="mr-20 <?= Yii::$app->controller->action->id === 'favorite' ? 'text-primary' : null ?>">
                             <i class="elegant-icon <?= ArticleHelper::hasFavorite() ? 'icon_star' : 'icon_star_alt' ?>"></i>
                             <?php if (ArticleHelper::favoriteCount()) : ?>
@@ -110,13 +109,13 @@ AppAsset::register($this);
                             </p>
                             <p><strong class="color-black">Я в соц. мережах</strong><br>
                             <ul class="header-social-network d-inline-block list-inline color-white mb-20">
-                                <li class="list-inline-item"><a class="fb" href="single.html#" target="_blank"
+                                <li class="list-inline-item"><a class="fb" href="single.html#" rel="nofollow" target="_blank"
                                                                 title="Facebook"><i
                                                 class="elegant-icon social_facebook"></i></a></li>
-                                <li class="list-inline-item"><a class="tw" href="single.html#" target="_blank"
+                                <li class="list-inline-item"><a class="tw" href="single.html#" rel="nofollow" target="_blank"
                                                                 title="Tweet now"><i
                                                 class="elegant-icon social_twitter"></i></a></li>
-                                <li class="list-inline-item"><a class="pt" href="single.html#" target="_blank"
+                                <li class="list-inline-item"><a class="pt" href="single.html#" rel="nofollow" target="_blank"
                                                                 title="Pin it"><i
                                                 class="elegant-icon social_pinterest"></i></a></li>
                             </ul>
@@ -130,7 +129,7 @@ AppAsset::register($this);
                         </div>
                         <div class="tagcloud mt-50">
                             <?php foreach (ArticleHelper::getActualTags(10) as $tag) : ?>
-                                <a class="tag-cloud-link"
+                                <a class="tag-cloud-link" rel="nofollow"
                                    href="/?SearchArticle[searchString]=<?= $tag ?>">#<?= $tag ?></a>
                             <?php endforeach; ?>
                         </div>

@@ -141,6 +141,7 @@ class ArticleHelper
     {
         $jsonTags = Article::find()
             ->select('tags')
+            ->where(['publication' => Article::PUBLICATION_ON])
             ->orderBy(['id' => SORT_DESC])
             ->limit(10)
             ->asArray()

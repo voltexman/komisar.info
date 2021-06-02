@@ -28,7 +28,7 @@ $(document).on('submit', 'form.add-reply', function (event) {
     return false;
 })
 
-$('.statistics tr').on("click",function(event){
+$('.statistics tbody tr').on("click",function(event){
         event.preventDefault();
         var id = $(this).data('key');
         $('#statisticsDetails').modal("show");

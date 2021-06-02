@@ -33,7 +33,7 @@ use yii\helpers\Url;
                     <ul class="list-inline d-inline-block">
                         <?php foreach (ArticleHelper::getActualTags(20) as $tag) : ?>
                             <li class="list-inline-item">
-                                <a href="/?SearchArticle[searchString]=<?= $tag ?>">#<?= $tag ?></a>
+                                <a rel="nofollow" href="/?SearchArticle[searchString]=<?= $tag ?>">#<?= $tag ?></a>
                             </li>
                         <?php endforeach; ?>
                     </ul>

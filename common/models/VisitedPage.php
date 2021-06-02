@@ -11,7 +11,6 @@ use Yii;
  * @property int $id
  * @property string|null $page
  * @property string|null $link
- * @property bool $real_page
  * @property int|null $viewing_time
  * @property int $statistics_id
  * @property string $visited_at [datetime]
@@ -35,7 +34,6 @@ class VisitedPage extends \yii\db\ActiveRecord
             [['viewing_time', 'statistics_id', 'viewing_time'], 'integer'],
             [['page'], 'string', 'max' => 255],
             [['visited_at'], 'default', 'value' => date('Y-m-d H:i:s')],
-            [['real_page'], 'boolean']
         ];
     }
 

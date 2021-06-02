@@ -10,7 +10,7 @@ use yii\data\ActiveDataProvider;
 
 class DashboardStatistics extends Widget
 {
-    public function run()
+    public function run(): string
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Statistics::find()

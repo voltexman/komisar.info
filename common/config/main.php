@@ -16,6 +16,10 @@ return [
     ],
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
+        'formatter' => [
+            'class'           => 'yii\i18n\Formatter',
+            'defaultTimeZone' => 'Europe/Kiev',
+        ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],

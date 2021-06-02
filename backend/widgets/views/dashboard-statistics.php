@@ -14,7 +14,10 @@ use yii\widgets\Pjax;
 <?php Modal::begin([
     'options' => ['id' => 'statisticsDetails'],
     'header' => 'Детальная информация',
-    'footer' => Html::button('Закрыть', ['class' => 'btn btn-primary btn-flat', 'onclick' => '$("#statisticsDetails").modal("hide")'])
+    'footer' => Html::button('Закрыть', [
+        'class' => 'btn btn-primary btn-flat',
+        'onclick' => '$("#statisticsDetails").modal("hide")'
+    ])
 ]);
 
 Modal::end();
@@ -44,8 +47,25 @@ Modal::end();
                     }
                 ],
                 [
+                    'label' => 'Ip адрес',
+                    'visible' => !Yii::$app->devicedetect->isMobile(),
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        return '<i class="fa fa-globe"></i> ' . $data->ip;
+                    }
+                ],
+                [
+                    'label' => 'Город',
+                    'visible' => !Yii::$app->devicedetect->isMobile(),
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        return StatisticsHelper::getCityByIp($data->ip) ?
+                            StatisticsHelper::getCityByIp($data->ip) :
+                            '<small class="text-muted"><b><i>неизвестно</i></b></small>';
+                    }
+                ],
+                [
                     'label' => 'ОС',
-//                    'attribute' => 'os',
                     'format' => 'raw',
                     'value' => function ($data) {
                         return StatisticsHelper::getStatisticsIcon($data->os) . $data->os;
@@ -53,7 +73,10 @@ Modal::end();
                 ],
                 [
                     'label' => 'Браузер',
-                    'attribute' => 'browser'
+                    'format' => 'raw',
+                    'value' => function ($data) {
+                        return StatisticsHelper::getStatisticsIcon($data->browser) . $data->browser;
+                    }
                 ],
                 [
                     'label' => 'Устройство',
@@ -72,7 +95,7 @@ Modal::end();
     <!-- /.box-body -->
     <div class="box-footer clearfix">
         <small class="text-muted">Всего: <b><?= $dataProvider->getTotalCount() ?></b></small>
-        <small class="text-muted">Сегодня: <b><?= 0 ?></b></small>
+        <small class="text-muted">Сегодня: <b><?= StatisticsHelper::getTodayVisitedCount() ?></b></small>
         <small class="text-muted">Ботов: <b><?= StatisticsHelper::getTotalBotsCount() ?></b></small>
     </div>
     <!-- /.box-footer -->

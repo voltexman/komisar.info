@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
 $this->title = $article->name;
-$this->registerMetaTag(['name' => 'keywords', 'content' => $article->meta_keywords]);
+$article->meta_keywords ? $this->registerMetaTag(['name' => 'keywords', 'content' => $article->meta_keywords]) : null;
 $this->registerMetaTag(['name' => 'description', 'content' => $article->meta_description]);
 $this->registerMetaTag(['name' => 'robots', 'content' => $article->indexation ? 'all' : 'none']);
 
@@ -97,7 +97,7 @@ $this->registerMetaTag(['name' => 'robots', 'content' => $article->indexation ? 
         <div class="entry-bottom mt-30 mb-30 wow fadeIn animated">
             <div class="tags">
                 <?php foreach (ArticleHelper::getArticleTags($article->tags) as $tag) : ?>
-                    <a href="/?SearchArticle[searchString]=<?= $tag ?>" rel="tag">#<?= $tag ?></a>
+                    <a rel="nofollow" href="/?SearchArticle[searchString]=<?= $tag ?>" rel="tag">#<?= $tag ?></a>
                 <?php endforeach; ?>
             </div>
         </div>
@@ -114,7 +114,7 @@ $this->registerMetaTag(['name' => 'robots', 'content' => $article->indexation ? 
             </div>
 
             <?= \ymaker\social\share\widgets\SocialShare::widget([
-                'configurator' => 'socialShare',
+                'configurator' => 'inViewShare',
                 'url' => Url::to($article->alias, true),
                 'title' => $article->meta_title,
                 'description' => $article->meta_description,

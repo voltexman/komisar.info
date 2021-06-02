@@ -76,6 +76,7 @@ class Article extends ActiveRecord
         return [
             [['name', 'short_text'], 'required'],
             [['tags'], 'required', 'message' => 'Нужно указать минимум 1 тег'],
+            [['alias'], 'string', 'max' => 255],
             [['name'], 'unique'],
             [['name', 'short_text', 'meta_title', 'meta_keywords', 'meta_description'], 'trim'],
             [['name'], 'string', 'min' => 50, 'max' => 255],
@@ -102,7 +103,7 @@ class Article extends ActiveRecord
 
     public function beforeSave($insert): bool
     {
-        $this->alias = Inflector::slug($this->name);
+        $this->alias = empty($this->alias) ? Inflector::slug($this->name) : $this->alias;
         $this->tags = Json::encode($this->tags);
 
         return parent::beforeSave($insert);

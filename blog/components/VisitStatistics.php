@@ -19,7 +19,7 @@ class VisitStatistics extends Component
 {
     public function init()
     {
-        if (!Yii::$app->request->isAjax) {
+        if (!Yii::$app->request->isAjax && StatisticsHelper::isRealRequest(self::getAliasByUrl())) {
             if ($this->isNewVisitor()) {
                 $id = $this->addVisitor();
                 $this->addPage($id);
@@ -55,17 +55,13 @@ class VisitStatistics extends Component
 
     public function addPage($id): void
     {
-        $alias = self::getAliasByUrl();
-
-        $page = ArticleHelper::getPageNameByAlias($alias);
-        $real_page = StatisticsHelper::getRealPageStatus($alias);
+        $page = ArticleHelper::getPageNameByAlias(self::getAliasByUrl());
 
         $visitedPage = new VisitedPage();
 
         $visitedPage->statistics_id = $id;
         $visitedPage->page = $page ? $page : Yii::$app->request->url;
         $visitedPage->link = Yii::$app->request->url;
-        $visitedPage->real_page = $real_page;
 
         $visitedPage->save();
 

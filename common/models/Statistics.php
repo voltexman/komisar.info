@@ -3,6 +3,9 @@
 namespace common\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
+use yii\db\ActiveRecord;
+use yii\db\Expression;
 
 /**
  * This is the model class for table "statistics".
@@ -20,7 +23,7 @@ use Yii;
  * @property string $accuracy [varchar(255)]
  *
  */
-class Statistics extends \yii\db\ActiveRecord
+class Statistics extends ActiveRecord
 {
     const DESKTOP = 'desktop';
     const MOBILE = 'mobile';
@@ -30,6 +33,22 @@ class Statistics extends \yii\db\ActiveRecord
 
     const REAL_PAGE = 1;
     const NOT_REAP_PAGE = 0;
+
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['visited_at', 'visited_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['visited_at'],
+                ],
+                // если вместо метки времени UNIX используется datetime:
+                // 'value' => new Expression('NOW()'),
+                'value' => new Expression('NOW()')
+            ],
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -46,7 +65,7 @@ class Statistics extends \yii\db\ActiveRecord
     {
         return [
             [['ip', 'browser', 'device', 'os', 'city', 'type'], 'string', 'max' => 255],
-            [['visited_at'], 'default', 'value' => date('Y-m-d H:i:s')],
+//            [['visited_at'], 'default', 'value' => date('Y-m-d H:i:s')],
         ];
     }
 
