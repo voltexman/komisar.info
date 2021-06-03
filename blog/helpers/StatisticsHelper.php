@@ -87,26 +87,39 @@ class StatisticsHelper
     {
         return Statistics::findOne($id)
             ->getPages()
-            ->count();
-    }
+    ->count();
+}
 
-    public static function getCityByIp($ip): string
-    {
-        $ip_data = @json_decode(file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $ip));
+public static function getCityByIp($ip): string
+{
+//        $server1 = @json_decode(file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $ip));
 
-        return $ip_data->geoplugin_city;
-    }
+//        $server1->geoplugin_city
 
-    public static function getCountryByIp($ip): string
-    {
-        return '';
-    }
+    $server2 = curl_init('http://ip-api.com/json/' . $ip . '?lang=ru');
+    curl_setopt($server2, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($server2, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($server2, CURLOPT_HEADER, false);
+    $res = curl_exec($server2);
+    curl_close($server2);
 
-    public static function getTodayVisitedCount(): int
-    {
-        return Statistics::find()
-            ->where(['like', 'visited_at', date('Y-m-d')])
-            ->andWhere(['type' => Statistics::HUMAN])
-            ->count();
-    }
+    $server2 = json_decode($res, true);
+
+    return $server2['city'];
+}
+
+public static function getCountryByIp($ip): string
+{
+    $ip_data = @json_decode(file_get_contents('http://www.geoplugin.net/json.gp?ip=' . $ip));
+
+    return $ip_data->geoplugin_countryName;
+}
+
+public static function getTodayVisitedCount(): int
+{
+    return Statistics::find()
+        ->where(['like', 'visited_at', date('Y-m-d')])
+        ->andWhere(['type' => Statistics::HUMAN])
+        ->count();
+}
 }

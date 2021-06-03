@@ -92,46 +92,11 @@ $this->title = 'Панель управления';
 
 <div class="row">
     <div class="col-lg-12">
+        <div class="callout callout-danger">
+            <h4>Предупреждение!</h4>
+
+            <p>На статистику ещё можно не обращать внимания, ещё делаю некоторые детали.</p>
+        </div>
         <?= DashboardStatistics::widget() ?>
-        <link rel="stylesheet"
-              href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
-              type="text/css">
-        <script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
-        <div id="map" class="map" style="width:100%; height:400px"></div>
-        <script type="text/javascript">
-
-            // const iconFeature = new ol.Feature({
-            //     geometry: new ol.geom.Point(ol.proj.fromLonLat([28.4262036, 49.2217985])),
-            //     name: 'Somewhere near Nottingham',
-            // });
-            //
-            // const map = new ol.Map({
-            //     target: 'map',
-            //     controls: [new ol.control.FullScreen()],
-            //     layers: [
-            //         new ol.layer.Tile({
-            //             source: new ol.source.OSM(),
-            //         }),
-            //         new ol.layer.Vector({
-            //             source: new ol.source.Vector({
-            //                 features: [iconFeature]
-            //             }),
-            //             style: new ol.style.Style({
-            //                 image: new ol.style.Icon({
-            //                     anchor: [0.5, 46],
-            //                     anchorXUnits: 'fraction',
-            //                     anchorYUnits: 'pixels',
-            //                     src: 'https://openlayers.org/en/latest/examples/data/icon.png'
-            //                 })
-            //             })
-            //         })
-            //     ],
-            //     view: new ol.View({
-            //         center: ol.proj.fromLonLat([28.4262036, 49.2217985]),
-            //         zoom: 16
-            //     })
-            // });
-
-        </script>
     </div>
 </div>

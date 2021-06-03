@@ -15,6 +15,7 @@ use yii\db\Expression;
  * @property string|null $browser
  * @property string|null $device
  * @property string|null $os
+ * @property integer|null $status
  * @property string|null $city
  * @property string|null $type
  * @property string $visited_at [datetime]
@@ -30,6 +31,12 @@ class Statistics extends ActiveRecord
 
     const BOT = 'bot';
     const HUMAN = 'human';
+
+    const REAL_GUEST = 1;
+
+    const STATUS_BOT = 0;
+    const STATUS_UNKNOWN = 1;
+    const STATUS_REAL = 2;
 
     public function behaviors()
     {
@@ -61,7 +68,8 @@ class Statistics extends ActiveRecord
     public function rules(): array
     {
         return [
-            [['ip', 'browser', 'device', 'os', 'city', 'type'], 'string', 'max' => 255],
+            [['ip', 'browser', 'device', 'os'], 'string', 'max' => 255],
+            [['status'], 'integer']
 //            [['visited_at'], 'default', 'value' => date('Y-m-d H:i:s')],
         ];
     }

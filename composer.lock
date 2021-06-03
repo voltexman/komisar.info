@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "02b240659a639021d58533efcf651c62",
+    "content-hash": "7d765f4001ae00481acccb14a48dd486",
     "packages": [
         {
             "name": "2amigos/yii2-chartjs-widget",
@@ -610,7 +610,7 @@
             "version": "v4.7.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "url": "git@github.com:FortAwesome/Font-Awesome.git",
                 "reference": "a8386aae19e200ddb0f6845b5feeee5eb7013687"
             },
             "dist": {
@@ -2163,12 +2163,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-dialog.git",
-                "reference": "9568dd53ba72a4057392ebad5b1f91a3969a03a5"
+                "reference": "bb0f6a1338caa3786893f7c0f34a0238c80a384d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-dialog/zipball/9568dd53ba72a4057392ebad5b1f91a3969a03a5",
-                "reference": "9568dd53ba72a4057392ebad5b1f91a3969a03a5",
+                "url": "https://api.github.com/repos/kartik-v/yii2-dialog/zipball/bb0f6a1338caa3786893f7c0f34a0238c80a384d",
+                "reference": "bb0f6a1338caa3786893f7c0f34a0238c80a384d",
                 "shasum": ""
             },
             "require": {
@@ -2211,7 +2211,7 @@
                 "issues": "https://github.com/kartik-v/yii2-dialog/issues",
                 "source": "https://github.com/kartik-v/yii2-dialog/tree/master"
             },
-            "time": "2021-02-03T17:48:35+00:00"
+            "time": "2021-06-02T17:48:36+00:00"
         },
         {
             "name": "kartik-v/yii2-field-range",
@@ -9378,7 +9378,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=8.0"
+        "php": ">=8.0",
+        "ext-curl": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"

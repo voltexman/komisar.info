@@ -15,6 +15,7 @@ use Yii;
  * @property integer $comment_id
  * @property integer $reply
  * @property int $article_id [int(11)]
+ * @property bool $author_like [tinyint(1)]
  */
 class Comment extends \yii\db\ActiveRecord
 {

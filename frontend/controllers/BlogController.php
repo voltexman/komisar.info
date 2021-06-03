@@ -162,6 +162,7 @@ class BlogController extends Controller
             $time = Yii::$app->request->post('time');
 
             VisitStatistics::setViewingTime($id, $time);
+            VisitStatistics::setRealStatus($id);
         }
     }
 }

@@ -50,4 +50,12 @@ class VisitedPage extends \yii\db\ActiveRecord
             'viewing_time' => 'Viewing Time',
         ];
     }
+
+    /**
+     * Gets query for [[Statistics]].
+     */
+    public function getStatistic()
+    {
+        return $this->hasOne(Statistics::class, ['id' => 'statistics_id']);
+    }
 }

@@ -10,6 +10,58 @@ use common\models\Statistics;
 use common\models\VisitedPage;
 use yii\widgets\DetailView;
 
+$this->registerCss('
+img.olTileImage {
+      -webkit-transform:inherit;
+    -moz-transform: inherit;
+    -o-transform:inherit ;
+    -ms-transform: inherit;
+    transform:inherit ;
+    -webkit-backface-visibility: inherit;
+    -moz-backface-visibility:inherit ;
+    -ms-backface-visibility:inherit ;
+    backface-visibility:inherit ;
+    -webkit-perspective:inherit ;
+    -moz-perspective:inherit ;
+    -ms-perspective:inherit ;
+    perspective:inherit ;
+
+}
+');
+$this->registerJs("
+                const iconFeature = new ol.Feature({
+                    geometry: new ol.geom.Point(ol.proj.fromLonLat([$statistics->longitude, $statistics->latitude])),
+                    name: 'Somewhere near Nottingham',
+                });
+
+                const map = new ol.Map({
+                    target: 'map',
+                    controls: [new ol.control.FullScreen()],
+                    layers: [
+                        new ol.layer.Tile({
+                            source: new ol.source.OSM(),
+                        }),
+                        new ol.layer.Vector({
+                            source: new ol.source.Vector({
+                                features: [iconFeature]
+                            }),
+                            style: new ol.style.Style({
+                                image: new ol.style.Icon({
+                                    anchor: [0.5, 46],
+                                    anchorXUnits: 'fraction',
+                                    anchorYUnits: 'pixels',
+                                    src: 'https://openlayers.org/en/latest/examples/data/icon.png'
+                                })
+                            })
+                        })
+                    ],
+                    view: new ol.View({
+                        center: ol.proj.fromLonLat([$statistics->longitude, $statistics->latitude]),
+                        zoom: 16
+                    })
+                });
+")
+
 ?>
 
 <div class="nav-tabs-custom">
@@ -35,8 +87,18 @@ use yii\widgets\DetailView;
                     'ip',
                     [
                         'label' => 'Город',
+                        'format' => 'raw',
                         'value' => function ($data) {
-                            return StatisticsHelper::getCityByIp($data->ip);
+                            $country = StatisticsHelper::getCountryByIp($data->ip);
+                            $city = StatisticsHelper::getCityByIp($data->ip);
+
+                            if ($country !== 'Ukraine' && !empty($city)) {
+                                return $city . '<small class="text-danger"><b><i> (предположительно)</i></b></small>';
+                            } elseif (empty($city)) {
+                                return '<small class="text-muted"><b><i>неизвестно</i></b></small>';
+                            }
+
+                            return $city;
                         }
                     ],
                     [
@@ -45,9 +107,16 @@ use yii\widgets\DetailView;
                             $count = StatisticsHelper::getVisitedPagesCount($data->id);
                             return $count . ' ' . ArticleHelper::plural($count, ['переход', 'перехода', 'переходов']);
                         }
+                    ],
+                    [
+                        'label' => 'Общее время',
+                        'value' => function ($data) {
+                            return '';
+                        }
                     ]
                 ]
             ]) ?>
+            лайков 0. в избранное 0. комментариев 0. поделился 0
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="tab_2">
@@ -97,34 +166,8 @@ use yii\widgets\DetailView;
         </div>
         <!-- /.tab-pane -->
         <div class="tab-pane" id="tab_3">
-            <!--            --><?php
-            //            $coord = new LatLng([
-            //                'lat' => $statistics->latitude,
-            //                'lng' => $statistics->longitude
-            //            ]);
-            //            $map = new Map([
-            //                'center' => $coord,
-            //                'zoom' => 14
-            //            ]);
-            //            echo $map->display();
-            //            ?>
-            <?= \elektromann\openlayers\Map::widget([
-                'center' => [$statistics->longitude, $statistics->latitude],
-                'zoom' => 16,
-                'markers' => [
-                    [
-                        'center' => 'here',
-                        'title' => "Bond street here", //Title of the marker
-                        'description' => "You can see Bond street", //Show wher one click on marker
-                    ],
-                ],
-                'fullScreenButton' => true,
-                'boxHeight' => '400px',
-                'boxWidth' => '100%'
-            ]); ?>
+            <div id="map" class="map" style="width:100%; height:400px"></div>
         </div>
-        <!-- /.tab-pane -->
     </div>
-    <!-- /.tab-content -->
 </div>
 

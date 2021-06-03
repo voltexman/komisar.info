@@ -7,6 +7,7 @@ use common\models\Statistics;
 use yii\bootstrap\Modal;
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\widgets\LinkPager;
 use yii\widgets\Pjax;
 
 ?>
@@ -22,6 +23,10 @@ use yii\widgets\Pjax;
 
 Modal::end();
 ?>
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/css/ol.css"
+      type="text/css">
+<script src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.5.0/build/ol.js"></script>
 
 <div class="box box-solid statistics">
     <div class="box-header with-border pull-left">
@@ -33,7 +38,9 @@ Modal::end();
         <?= GridView::widget([
             'dataProvider' => $dataProvider,
             'emptyText' => 'Посетителей нет',
+            'tableOptions' => ['class' => 'table table-striped table-bordered table-hover'],
             'summary' => false,
+            'layout' => '{items}',
             'columns' => [
                 [
                     'label' => 'Дата',
@@ -60,7 +67,7 @@ Modal::end();
                     'format' => 'raw',
                     'value' => function ($data) {
                         return StatisticsHelper::getCityByIp($data->ip) ?
-                            StatisticsHelper::getCityByIp($data->ip) :
+                            '<i class="fa fa-map-marker"></i> ' . StatisticsHelper::getCityByIp($data->ip) :
                             '<small class="text-muted"><b><i>неизвестно</i></b></small>';
                     }
                 ],
@@ -93,10 +100,15 @@ Modal::end();
         <?php Pjax::end() ?>
     </div>
     <!-- /.box-body -->
-    <div class="box-footer clearfix">
+    <div class="box-footer clearfix ">
         <small class="text-muted">Всего: <b><?= $dataProvider->getTotalCount() ?></b></small>
         <small class="text-muted">Сегодня: <b><?= StatisticsHelper::getTodayVisitedCount() ?></b></small>
         <small class="text-muted">Ботов: <b><?= StatisticsHelper::getTotalBotsCount() ?></b></small>
+
+        <?= LinkPager::widget([
+            'pagination' => $dataProvider->getPagination(),
+            'options' => ['class' => 'pagination pagination-sm no-margin pull-right']
+        ]) ?>
     </div>
     <!-- /.box-footer -->
 </div>

@@ -36,7 +36,7 @@ class VisitStatistics extends Component
 
     public function addVisitor()
     {
-        $type = (new CrawlerDetect())->isCrawler() ? Statistics::BOT : Statistics::HUMAN;
+        $status = (new CrawlerDetect())->isCrawler() ? Statistics::STATUS_BOT : Statistics::STATUS_UNKNOWN;
 
         $statistics = new Statistics();
 
@@ -44,7 +44,8 @@ class VisitStatistics extends Component
         $statistics->browser = (new Browser())->getName();
         $statistics->os = (new Os())->getName();
         $statistics->device = Yii::getAlias('@device');
-        $statistics->type = $type;
+        $statistics->status = $status;
+//        $statistics->type = $type;
 
         $statistics->save();
 
@@ -80,11 +81,6 @@ class VisitStatistics extends Component
         return !Statistics::findOne(['ip' => Yii::$app->request->userIP]);
     }
 
-    private function isBot(): bool
-    {
-        return false;
-    }
-
     private static function getIdByIp(): int
     {
         $ip = Yii::$app->request->userIP;
@@ -101,5 +97,15 @@ class VisitStatistics extends Component
     {
         $visitedPage = VisitedPage::findOne(['id' => $id]);
         $visitedPage->updateAttributes(['viewing_time' => $time]);
+    }
+
+    public static function setRealStatus($id): void
+    {
+        VisitedPage::findOne($id)
+            ->getStatistic()
+            ->one()
+            ->updateAttributes([
+                'status' => Statistics::STATUS_REAL
+            ]);
     }
 }

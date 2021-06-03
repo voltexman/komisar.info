@@ -35,3 +35,9 @@ $('.statistics tbody tr').on("click",function(event){
         $('#statisticsDetails').find(".modal-body").load('/admin/statistic/statistics-details?id=' + id);
     }
 );
+
+window.onclick = function(event) {
+    let modal = $('#statisticsDetails');
+    if (event.target === modal) {
+    }
+}

@@ -40,7 +40,8 @@ AppAsset::register($this);
         <?php $this->head() ?>
     </head>
 
-    <body data-statistics-id="<?= Yii::$app->session->getFlash('statisticsId') ?>">
+    <body data-statistics-id="<?= Yii::$app->session->getFlash('statisticsId') ?>"
+          data-real-id="<?= Yii::$app->session->getFlash('realId') ?>">
     <?php $this->beginBody() ?>
     <div class="scroll-progress primary-bg"></div>
     <!-- Start Preloader -->

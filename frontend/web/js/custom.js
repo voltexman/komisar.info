@@ -33,11 +33,11 @@ function error(err) {
 navigator.geolocation.getCurrentPosition(success, error, options);
 
 TimeMe.initialize({
-    currentPageName: ".article",
+    currentPageName: "body",
 });
 
 window.onbeforeunload = function () {
-    let realId = $('.article').data('real-id');
+    let realId = $('body').data('real-id');
     if (realId !== 'undefined') {
         let timeSpentOnPage = TimeMe.getTimeOnCurrentPageInSeconds();
         $.post({

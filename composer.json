@@ -52,7 +52,8 @@
         "jaybizzle/crawler-detect": "^1.2",
         "2amigos/yii2-google-maps-library": "*",
         "elektromann/yii2-openlayers-maps": "*",
-        "mirocow/yii2-yandex-maps": "dev-master"
+        "mirocow/yii2-yandex-maps": "dev-master",
+      "ext-curl": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
