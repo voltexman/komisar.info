@@ -14,8 +14,7 @@ class DashboardStatistics extends Widget
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Statistics::find()
-                ->where(['type' => Statistics::HUMAN])
-                ->andWhere(['real_guest' => Statistics::REAL_GUEST]),
+                ->where(['status' => Statistics::STATUS_REAL]),
             'sort' => [
                 'defaultOrder' => [
                     'visited_at' => SORT_DESC

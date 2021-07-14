@@ -32,8 +32,6 @@ class Statistics extends ActiveRecord
     const BOT = 'bot';
     const HUMAN = 'human';
 
-    const REAL_GUEST = 1;
-
     const STATUS_BOT = 0;
     const STATUS_UNKNOWN = 1;
     const STATUS_REAL = 2;

@@ -16,6 +16,9 @@ return [
     'timeZone' => 'Europe/Kiev',
     'language' => 'ru',
     'components' => [
+        'wikipedia' => [
+            'class' => 'blog\components\wikipedia\src\thewulf7\Wikipedia\Connection'
+        ],
         'devicedetect' => [
             'class' => 'alexandernst\devicedetect\DeviceDetect'
         ],

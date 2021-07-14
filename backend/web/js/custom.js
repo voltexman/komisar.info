@@ -28,16 +28,23 @@ $(document).on('submit', 'form.add-reply', function (event) {
     return false;
 })
 
-$('.statistics tbody tr').on("click",function(event){
+$(document).on('click', '.statistics tbody tr', function (event) {
         event.preventDefault();
-        var id = $(this).data('key');
-        $('#statisticsDetails').modal("show");
-        $('#statisticsDetails').find(".modal-body").load('/admin/statistic/statistics-details?id=' + id);
+
+        let id = $(this).data('key');
+        let statisticsDetails = $('#statisticsDetails');
+
+        statisticsDetails.modal('show');
+        statisticsDetails.find('.modal-body').load('/admin/statistic/details?id=' + id);
     }
 );
 
-window.onclick = function(event) {
-    let modal = $('#statisticsDetails');
-    if (event.target === modal) {
-    }
-}
+$(document).on('click', '.statistics a.btn-chart', function (event) {
+    event.preventDefault();
+
+    let charts = $('#charts');
+
+    charts.modal('show');
+    charts.find('.modal-body').load('/admin/statistic/charts');
+})
+

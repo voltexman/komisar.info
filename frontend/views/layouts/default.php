@@ -49,6 +49,11 @@ AppAsset::register($this);
         <div class="circle"></div>
     </div>
 
+    <aside id="sidebar-wrapper" class="custom-scrollbar offcanvas-sidebar">
+        <button class="off-canvas-close"><i class="elegant-icon icon_close"></i></button>
+        <div class="sidebar-inner"></div>
+    </aside>
+
     <!-- Start Header -->
     <header class="main-header header-style-1 font-heading">
         <div class="header-top header-sticky">
@@ -57,14 +62,14 @@ AppAsset::register($this);
                     <div class="col-md-3 col-xs-6">
                         <a href="<?= Url::home() ?>"><img class="logo" src="/imgs/theme/logo.png" alt=""></a>
                     </div>
-                    <div class="col-md-9 col-xs-6 text-right header-top-right ">
+                    <div class="col-md-9 col-xs-6 text-right header-top-right p-0 pr-20">
                         <button class="search-icon d-md-inline">
-                        <span class="text-muted font-small">
-                            <i class="elegant-icon icon_search mr-5"></i>Пошук</span>
+                        <span class="text-muted font-medium">
+                            <i class="elegant-icon icon_search mr-5 font-large"></i>Пошук</span>
                         </button>
                         <span class="vertical-divider mr-20 ml-20 d-md-inline"></span>
                         <?php Pjax::begin(['id' => 'favoriteMenu', 'timeout' => false]) ?>
-                        <a rel="nofollow" href="<?= Url::to(['site/favorite']) ?>" data-pjax="0">
+                        <a rel="nofollow" href="<?= Url::to(['site/favorite']) ?>" data-pjax="0" class="font-large">
                         <span class="mr-20 <?= Yii::$app->controller->action->id === 'favorite' ? 'text-primary' : null ?>">
                             <i class="elegant-icon <?= ArticleHelper::hasFavorite() ? 'icon_star' : 'icon_star_alt' ?>"></i>
                             <?php if (ArticleHelper::favoriteCount()) : ?>
@@ -73,7 +78,7 @@ AppAsset::register($this);
                         </span>
                         </a>
                         <?php Pjax::end() ?>
-                        <a href="<?= Url::to(['site/contact']) ?>">
+                        <a href="<?= Url::to(['site/contact']) ?>" class="font-large">
                             <span class="<?= Yii::$app->controller->action->id === 'contact' ? 'text-primary' : null ?>">
                                 <i class="elegant-icon <?= Yii::$app->controller->action->id === 'contact' ? 'icon_mail' : 'icon_mail_alt' ?>"></i>
                             </span>
@@ -96,34 +101,7 @@ AppAsset::register($this);
     <footer class="pt-50 pb-20 bg-grey">
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="sidebar-widget wow fadeInUp animated mb-30">
-                        <div class="widget-header-2 position-relative mb-30">
-                            <h5 class="mt-5 mb-30">Про мене</h5>
-                        </div>
-                        <div class="textwidget">
-                            <p>
-                                Start writing, no matter what. The water does not flow until the faucet is turned on.
-                            </p>
-                            <p>
-                                Start writing, no matter what. The water does not flow until the faucet is turned on.
-                            </p>
-                            <p><strong class="color-black">Я в соц. мережах</strong><br>
-                            <ul class="header-social-network d-inline-block list-inline color-white mb-20">
-                                <li class="list-inline-item"><a class="fb" href="single.html#" rel="nofollow" target="_blank"
-                                                                title="Facebook"><i
-                                                class="elegant-icon social_facebook"></i></a></li>
-                                <li class="list-inline-item"><a class="tw" href="single.html#" rel="nofollow" target="_blank"
-                                                                title="Tweet now"><i
-                                                class="elegant-icon social_twitter"></i></a></li>
-                                <li class="list-inline-item"><a class="pt" href="single.html#" rel="nofollow" target="_blank"
-                                                                title="Pin it"><i
-                                                class="elegant-icon social_pinterest"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 offset-md-2">
                     <div class="sidebar-widget widget_tagcloud wow fadeInUp animated mb-30" data-wow-delay="0.2s">
                         <div class="widget-header-2 position-relative mb-30">
                             <h5 class="mt-5 mb-30">Актуальні теги</h5>

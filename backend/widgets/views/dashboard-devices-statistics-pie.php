@@ -32,7 +32,7 @@ use dosamigos\chartjs\ChartJs;
                             '#fff',
                             '#fff'
                         ],
-                        'borderWidth' => 1,
+                        'borderWidth' => 5,
                         'hoverBorderColor' => ["#999", "#999"],
                     ]
                 ]

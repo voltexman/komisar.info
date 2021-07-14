@@ -92,7 +92,7 @@ class SiteController extends Controller
 
         Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => 'Блог - ' . Yii::$app->name
+            'content' => 'Привіт, я Максим. Ласкаво прошу на мій блог. Запропонуйте тему для написання статті, яка вас зацікавила. На найцікавішу тему я напишу статтю та опублікую її'
         ]);
 
         return $this->render('index', [
@@ -196,7 +196,7 @@ class SiteController extends Controller
 
         \Yii::$app->view->registerMetaTag([
             'name' => 'description',
-            'content' => 'Контакти ' . Yii::$app->name
+            'content' => 'Для мене дуже важливий зворотній зв`язок з читачами. Напишіть запитання чи побажання, що би Ви хотіли додати, змінити чи покращити. Приймаються будь-які пропозиції'
         ]);
 
         return $this->render('contact', ['model' => $model]);

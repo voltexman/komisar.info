@@ -13,7 +13,6 @@ use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use Yii;
 use yii\base\Component;
-use yii\web\NotFoundHttpException;
 
 class VisitStatistics extends Component
 {

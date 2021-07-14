@@ -22,6 +22,8 @@
                     ['label' => 'Статьи', 'icon' => 'file-text-o', 'url' => ['article/index'], 'active' => in_array($this->context->route, ['article/index', 'article/update'])],
                     ['label' => 'Комментарии', 'icon' => 'comment-o', 'url' => ['comment/index'], 'active' => in_array($this->context->route, ['comment/index', 'comment/view'])],
                     ['label' => 'Сообщения', 'icon' => 'envelope-o', 'url' => ['message/index'], 'active' => in_array($this->context->route, ['message/index', 'message/view'])],
+                    ['label' => 'Предложения', 'icon' => 'quote-right', 'url' => ['sentence/index'], 'active' => in_array($this->context->route, ['sentence/index', 'sentence/view'])],
+                    ['label' => 'Статистика', 'icon' => 'bar-chart-o', 'url' => ['statistic/index'], 'active' => in_array($this->context->route, ['statistic/index', 'statistic/view'])],
                 ],
             ]
         ) ?>
